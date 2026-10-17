@@ -98,10 +98,10 @@ describe('computeProjectLgd (Project LGD New sheet)', () => {
     expect(row.lgdByClass['Subordinated']).toBeNull();
   });
 
-  it('floors the LGD at the liquidation cost when fully collateralised', () => {
+  it('leaves only the one-year time-value loss when over-collateralised (sheet formula)', () => {
     const r4 = computeProjectLgd({ ...input, pooledCollateral: 5e9 });
-    expect(y(2013).lgdByClass['Senior Secured']).toBeGreaterThan(0.01);
-    expect(r4.years.find((x) => x.year === 2013)!.lgdByClass['Senior Secured']).toBe(0.01);
+    expect(y(2013).lgdByClass['Senior Secured']).toBeGreaterThan(0.2);
+    expect(r4.years.find((x) => x.year === 2013)!.lgdByClass['Senior Secured']).toBeCloseTo(1 - 1 / (1 + valuation.annualisedRate), 10);
   });
 
   it('returns nulls and a warning without a recovery rate', () => {

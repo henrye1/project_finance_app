@@ -93,8 +93,9 @@ describe('computeValuation (Project Valuation sheet)', () => {
     expect(r.periods[1].repayments).toEqual([0, 0, 0, 0, 0]);
   });
 
-  it('assigns the pre-completion PD until construction end and the post PD after', () => {
-    expect(r.periods[3].pd).toBe(0.02);
+  it('assigns the pre-completion PD before construction end and the post PD from construction end', () => {
+    expect(r.periods[2].pd).toBe(0.02);
+    expect(r.periods[3].pd).toBe(0.01);
     expect(r.periods[4].pd).toBe(0.01);
   });
 
