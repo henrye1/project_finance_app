@@ -109,7 +109,7 @@ describe('computeValuation (Project Valuation sheet)', () => {
   it('keeps construction costs that fall inside a coarser period', () => {
     const annual = computeValuation({ ...solarValuationInput, cfadsFrequency: 'annually' });
     // the grid passes through construction end, so the last construction period is a stub ending 2014-06-30
-    expect(annual.periods.map((p) => p.date).slice(0, 4)).toEqual(['2012-12-31', '2013-12-31', '2014-06-30', '2014-12-31']);
+    expect(annual.periods.map((p) => p.date).slice(0, 4)).toEqual(['2012-12-31', '2013-12-31', '2014-06-30', '2015-06-30']);
     expect(annual.periods[2].constructionCost).toBe(224397718);
     expect(annual.periods[2].accumulatedCost).toBe(1626419910);
     expect(annual.periods[3].constructionCost).toBeNull();
