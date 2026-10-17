@@ -33,6 +33,8 @@ export function validateDeal(deal: Deal): FieldError[] {
     add('projectInformation.constructionEndDate', 'Construction end date must be after the project start date');
   if (pi.constructionEndDate && pi.projectEndDate && pi.projectEndDate < pi.constructionEndDate)
     add('projectInformation.projectEndDate', 'Project end date must be after the construction end date');
+  if (pi.ratingDate && pi.projectStartDate && pi.projectEndDate && (pi.ratingDate < pi.projectStartDate || pi.ratingDate > pi.projectEndDate))
+    add('projectInformation.ratingDate', 'Rating date must fall between the project start and end dates');
   if (!isPct(pi.clearanceCostPct)) add('projectInformation.clearanceCostPct', 'Clearance cost must be between 0% and 100%');
   if (!isPct(pi.liquidationCostPct)) add('projectInformation.liquidationCostPct', 'Liquidation cost must be between 0% and 100%');
   if (!isNonNegative(pi.baseValue)) add('projectInformation.baseValue', 'Base value cannot be negative');

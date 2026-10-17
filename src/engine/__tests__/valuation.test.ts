@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { computeValuation, constructionCostDates, cfadsDates, type ValuationInput } from '../valuation';
 import { computeValuationAnalysis } from '../valuationAnalysis';
 import { solarLoan, sheetSchedule, constructionCosts, cfads } from './fixtures/solarCapital';
+import { buildSchedule } from '../amortisation';
 import type { ScheduleRow } from '../types';
 
 const schedule: ScheduleRow[] = sheetSchedule.map((r) => ({
@@ -107,7 +108,8 @@ describe('computeValuation (Project Valuation sheet)', () => {
 
   it('keeps construction costs that fall inside a coarser period', () => {
     const annual = computeValuation({ ...solarValuationInput, cfadsFrequency: 'annually' });
-    expect(annual.periods.map((p) => p.date).slice(0, 3)).toEqual(['2012-12-31', '2013-12-31', '2014-12-31']);
+    // the grid passes through construction end, so the last construction period is a stub ending 2014-06-30
+    expect(annual.periods.map((p) => p.date).slice(0, 4)).toEqual(['2012-12-31', '2013-12-31', '2014-06-30', '2014-12-31']);
     expect(annual.periods[2].constructionCost).toBe(224397718);
     expect(annual.periods[2].accumulatedCost).toBe(1626419910);
     expect(annual.periods[3].constructionCost).toBeNull();
@@ -156,5 +158,37 @@ describe('computeValuationAnalysis (Valuation Analysis sheet)', () => {
   it('averages the DSCR from each year to the end', () => {
     expect(va.find((x) => x.year === 2017)!.averageDscr).toBeCloseTo(1.6325537896084072, 6);
     expect(va.find((x) => x.year === 2012)!.averageDscr).toBeCloseTo(1.3534906323393556, 6);
+  });
+});
+
+describe('grid alignment (review fixes)', () => {
+  it('passes the period grid through construction end when the build is not a whole number of periods', () => {
+    const shifted = computeValuation({ ...solarValuationInput, projectStartDate: '2012-11-30' });
+    const dates = shifted.periods.map((p) => p.date);
+    expect(dates).toContain('2014-06-30');
+    expect(dates.slice(0, 5)).toEqual(['2012-11-30', '2013-05-31', '2013-11-30', '2014-05-31', '2014-06-30']);
+    expect(shifted.periods.find((p) => p.date === '2016-06-30')!.freeCashFlow).toBeCloseTo(129423692.97495937, 3);
+    expect(shifted.estValueAfterConstruction).toBeCloseTo(1642684109.1, 1);
+    expect(shifted.periods.find((p) => p.date === '2014-06-30')!.constructionCost).toBe(117925300);
+    expect(shifted.periods.find((p) => p.date === '2014-12-31')!.constructionCost).toBeNull();
+  });
+
+  it('sums repayments that fall inside a period even when the payment date is not a grid date', () => {
+    const offGrid = schedule.map((r) => ({ ...r, date: r.date.slice(0, 8) + '15' }));
+    const r = computeValuation({ ...solarValuationInput, loans: [{ id: 1, schedule: offGrid, disbursements: solarLoan.disbursements }] });
+    const va = computeValuationAnalysis(r.periods, 2012, 2036);
+    const expected2017 = offGrid.filter((x) => x.date.startsWith('2017')).reduce((s, x) => s + x.payment, 0);
+    expect(va.find((x) => x.year === 2017)!.repayments[0]).toBeCloseTo(expected2017, 3);
+    expect(r.periods.find((p) => p.date === '2017-12-31')!.balances[0]).toBeCloseTo(offGrid.find((x) => x.date === '2017-12-15')!.closing, 3);
+    expect(r.periods.find((p) => p.date === '2014-12-31')!.capitalRepayments[0]).toBeCloseTo(18400549.38, 3);
+  });
+
+  it('sums monthly payments into semi-annual periods', () => {
+    const monthlyLoan = { ...solarLoan, paymentFrequency: 'Monthly' as const, paymentType: 'InterestOnly' as const };
+    const { rows } = buildSchedule(monthlyLoan);
+    const r = computeValuation({ ...solarValuationInput, loans: [{ id: 1, schedule: rows, disbursements: solarLoan.disbursements }] });
+    const va = computeValuationAnalysis(r.periods, 2012, 2036);
+    const expected2017 = rows.filter((x) => x.date.startsWith('2017')).reduce((s, x) => s + x.payment, 0);
+    expect(va.find((x) => x.year === 2017)!.repayments[0]).toBeCloseTo(expected2017, 3);
   });
 });

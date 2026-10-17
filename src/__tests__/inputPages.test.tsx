@@ -106,3 +106,32 @@ describe('Funding Details page', () => {
     expect(stored().loans[0].disbursements.length).toBe(1);
   });
 });
+
+describe('review fixes', () => {
+  it('pastes a column of drawdown amounts into consecutive rows', async () => {
+    window.location.hash = '#/funding-details';
+    const deal = solarCapitalDealFactory();
+    render(<App initialDeal={deal} />);
+    const table = screen.getByRole('table', { name: /Drawdown schedule/i });
+    const first = within(table).getAllByRole('textbox')[0];
+    fireEvent.paste(first, { clipboardData: { getData: () => '111\n222\n333' } });
+    await flushSave();
+    const amounts = stored().loans[0].disbursements.slice(0, 3).map((d: { amount: number }) => d.amount);
+    expect(amounts).toEqual([111, 222, 333]);
+  });
+
+  it('warns that New deal replaces the saved deal', () => {
+    window.location.hash = '#/project-information';
+    render(<App initialDeal={solarCapitalDealFactory()} />);
+    let message = '';
+    const original = window.confirm;
+    window.confirm = (m?: string) => {
+      message = m ?? '';
+      return false;
+    };
+    fireEvent.click(screen.getByRole('button', { name: /new deal/i }));
+    window.confirm = original;
+    expect(message).toMatch(/replaces the deal saved in this browser/i);
+    expect(message).toMatch(/export/i);
+  });
+});

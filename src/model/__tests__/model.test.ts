@@ -31,6 +31,14 @@ describe('validateDeal', () => {
     expect(errors.find((e) => e.path === 'loans.0.maturityDate')!.message).toMatch(/first payment/);
   });
 
+  it('requires the rating date to fall inside the project life', () => {
+    const d = solarCapitalDealFactory();
+    d.projectInformation.ratingDate = '2012-06-30';
+    expect(validateDeal(d).find((e) => e.path === 'projectInformation.ratingDate')!.message).toMatch(/between the project start and end/);
+    d.projectInformation.ratingDate = '2040-01-01';
+    expect(validateDeal(d).some((e) => e.path === 'projectInformation.ratingDate')).toBe(true);
+  });
+
   it('rejects negative amounts', () => {
     const d = solarCapitalDealFactory();
     d.loans[0].facilityAmount = -5;

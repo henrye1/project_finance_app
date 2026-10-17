@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { glossary, pdScorecardStructure, referenceTables, RISK_RESPONSES, sovereignRatings } from '../data';
-import { Field } from '../components/Field';
+import { Field, NumberInput } from '../components/Field';
 import { DeviationNote, HelpNote } from '../components/HelpNote';
-import { fmtNumber, fmtPct, parseNumber } from '../components/format';
+import { fmtNumber, fmtPct } from '../components/format';
 import type { PdSectionResult } from '../engine/pdScorecard';
 import type { RiskResponse } from '../engine/types';
 import { useDeal } from '../model/dealContext';
@@ -146,11 +146,11 @@ export function PdScorecardPage() {
                                       {q.text} <HelpNote text={glossary[q.id] ?? ''} />
                                     </td>
                                     <td className={activeClass('pre')}>
-                                      <input className="cell-input capture" aria-label="E2.1 pre-completion percentage" inputMode="decimal" defaultValue={inputs.offtakePct.pre === null ? '' : fmtNumber(inputs.offtakePct.pre * 100, 0)} onBlur={(e) => setOfftake('pre', parseNumber(e.target.value) === null ? null : parseNumber(e.target.value)! / 100)} />
+                                      <NumberInput className="cell-input capture" ariaLabel="E2.1 pre-completion percentage" value={inputs.offtakePct.pre} scale={100} digits={2} onChange={(v) => setOfftake('pre', v)} />
                                     </td>
                                     <td className="right">%</td>
                                     <td className={activeClass('post')}>
-                                      <input className="cell-input capture" aria-label="E2.1 post-completion percentage" inputMode="decimal" defaultValue={inputs.offtakePct.post === null ? '' : fmtNumber(inputs.offtakePct.post * 100, 0)} onBlur={(e) => setOfftake('post', parseNumber(e.target.value) === null ? null : parseNumber(e.target.value)! / 100)} />
+                                      <NumberInput className="cell-input capture" ariaLabel="E2.1 post-completion percentage" value={inputs.offtakePct.post} scale={100} digits={2} onChange={(v) => setOfftake('post', v)} />
                                     </td>
                                     <td className="right">%</td>
                                     <td className="description">Portion of output under off-take agreements; scales the E2.2 average (slope {referenceTables.offtake.slope}, intercept {referenceTables.offtake.intercept}).</td>

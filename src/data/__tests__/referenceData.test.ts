@@ -106,6 +106,8 @@ describe('reference data extracted from the workbook', () => {
   it('has glossary text for the rating date', () => {
     expect(glossary['PROJECT RATING DATE']).toContain('evaluation / rating date');
     expect(glossary['A2.1']).toContain('multiple jurisdictions');
+    expect(glossary['Facility Amount']).toContain('capital balance at the original commencement');
+    expect(glossary['FUNDING DETAILS:']).toMatch(/^This section captures the funding details/);
   });
 
   it('has the restructure grid', () => {

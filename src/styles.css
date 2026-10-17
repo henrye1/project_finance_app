@@ -535,6 +535,11 @@ output.field-input {
   background: #fdf6d8;
 }
 
+.data-table.wrap td,
+.data-table.wrap th {
+  white-space: normal;
+}
+
 .data-table tfoot td {
   font-weight: 600;
   background: var(--mist);

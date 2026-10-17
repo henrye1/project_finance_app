@@ -49,7 +49,7 @@ interface StaticProps extends BaseProps {
 
 export type FieldProps = TextProps | NumberProps | PercentProps | DateProps | SelectProps | StaticProps;
 
-function NumberInput({ value, onChange, id, scale, digits, className }: { value: number | null; onChange: (v: number | null) => void; id: string; scale: number; digits: number; className: string }) {
+export function NumberInput({ value, onChange, id, scale, digits, className, ariaLabel }: { value: number | null; onChange: (v: number | null) => void; id?: string; scale: number; digits: number; className: string; ariaLabel?: string }) {
   const toText = (v: number | null) => (v === null ? '' : fmtNumber(v * scale, digits));
   const [text, setText] = useState(toText(value));
   const [focused, setFocused] = useState(false);
@@ -60,6 +60,7 @@ function NumberInput({ value, onChange, id, scale, digits, className }: { value:
   return (
     <input
       id={id}
+      aria-label={ariaLabel}
       className={className}
       inputMode="decimal"
       value={text}

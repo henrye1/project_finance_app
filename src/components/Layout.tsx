@@ -47,7 +47,7 @@ export function Layout({ route, onNavigate, children }: { route: Route; onNaviga
     }
   };
   const onNew = () => {
-    if (window.confirm('Start a new deal? Unsaved changes to the current deal are kept in this browser until you overwrite them.')) replaceDeal(emptyDeal());
+    if (window.confirm('Start a new deal? This replaces the deal saved in this browser. Export the current deal first if you want to keep it.')) replaceDeal(emptyDeal());
   };
 
   return (

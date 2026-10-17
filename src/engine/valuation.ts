@@ -107,7 +107,12 @@ function emptySlots(): number[] {
 export function computeValuation(v: ValuationInput): ValuationResult {
   const warnings: string[] = [];
   const months = frequencyMonths(v.cfadsFrequency);
-  const grid = dateGrid(v.projectStartDate, v.projectEndDate, months, false);
+  // The grid passes through construction end so CFADS dates (anchored there) always land on it; the
+  // construction stub period simply ends early when the build is not a whole number of periods.
+  const grid =
+    compareIso(v.projectStartDate, v.constructionEndDate) < 0 && compareIso(v.constructionEndDate, v.projectEndDate) <= 0
+      ? [...dateGrid(v.projectStartDate, v.constructionEndDate, months, true), ...dateGrid(v.constructionEndDate, v.projectEndDate, months, false).slice(1)]
+      : dateGrid(v.projectStartDate, v.projectEndDate, months, false);
 
   // Project value timeline from construction end (PV rows 26-28).
   const timelineDates = dateGrid(v.constructionEndDate, v.projectEndDate, months, false);
@@ -121,13 +126,11 @@ export function computeValuation(v: ValuationInput): ValuationResult {
   }));
   const pvByDate = new Map(timeline.map((t) => [t.date, t.projectValue]));
 
-  const scheduleByLoan = v.loans.map((l) => new Map(l.schedule.map((r) => [r.date, r])));
-  const lastScheduleDate = v.loans.map((l) => (l.schedule.length ? l.schedule[l.schedule.length - 1].date : null));
+  const sortedSchedules = v.loans.map((l) => [...l.schedule].sort((a, b) => compareIso(a.date, b.date)));
 
   const periods: ValuationPeriod[] = [];
   let accumulated: number | null = null;
   let cumulativeDrawdowns = emptySlots();
-  let prevBalances = emptySlots();
   let prevDate: string | null = null;
   let maxAccumulated = 0;
 
@@ -170,18 +173,17 @@ export function computeValuation(v: ValuationInput): ValuationResult {
       const draw = compareIso(date, v.constructionEndDate) > 0 ? 0 : sumBetween(loan.disbursements, prevDate, date);
       drawdowns[slot] = draw;
       cumulativeDrawdowns[slot] += draw;
-      const row = scheduleByLoan[slot].get(date);
-      if (row) {
-        repayments[slot] = row.payment;
-        capitalRepayments[slot] = row.payment - row.interest;
-        balances[slot] = row.closing;
-      } else if (lastScheduleDate[slot] && compareIso(date, lastScheduleDate[slot]!) > 0) {
-        balances[slot] = 0;
-      } else if (loan.schedule.length && compareIso(date, loan.schedule[0].date) > 0) {
-        balances[slot] = prevBalances[slot];
-      } else {
-        balances[slot] = cumulativeDrawdowns[slot];
+      // Payments inside (previous grid date, this grid date]; balance = closing of the last payment on or before this date.
+      let lastRow: ScheduleRow | null = null;
+      for (const row of sortedSchedules[slot]) {
+        if (compareIso(row.date, date) > 0) break;
+        if (prevDate === null || compareIso(row.date, prevDate) > 0) {
+          repayments[slot] += row.payment;
+          capitalRepayments[slot] += row.payment - row.interest;
+        }
+        lastRow = row;
       }
+      balances[slot] = lastRow ? lastRow.closing : cumulativeDrawdowns[slot];
     });
 
     const freeCashFlow = fcfByDate.has(date) && pvByDate.has(date) ? fcfByDate.get(date)! : 0;
@@ -208,7 +210,6 @@ export function computeValuation(v: ValuationInput): ValuationResult {
       companyAssetValue,
       pd,
     });
-    prevBalances = balances;
     prevDate = date;
   }
 

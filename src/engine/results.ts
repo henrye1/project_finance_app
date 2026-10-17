@@ -50,8 +50,10 @@ export function computeResults(i: ResultsInput): ResultsOutput {
   }));
 
   const pd = i.finalPd;
-  const seniorLifetime = lgdTable[0].lifetime ?? LGD_FLOOR; // sheet: IFERROR(..., 0.01)
-  const downturnLgd = 0.92 * seniorLifetime + 0.08;
+  // The sheet falls back to a 1% LGD (IFERROR) here; the app withholds the capital numbers instead so a
+  // missing Senior Secured LGD cannot pass unnoticed as a low capital charge.
+  const seniorLifetime = lgdTable[0].lifetime;
+  const downturnLgd = seniorLifetime === null ? null : 0.92 * seniorLifetime + 0.08;
   let remainingMaturity: number | null = null;
   if (i.ratingDate && i.projectEndDate) {
     const yf = yearFrac30360(i.ratingDate, i.projectEndDate);
@@ -63,7 +65,7 @@ export function computeResults(i: ResultsInput): ResultsOutput {
   let k: number | null = null;
   let rwa: number | null = null;
   let capital: number | null = null;
-  if (pd !== null && pd > 0 && pd < 1) {
+  if (pd !== null && pd > 0 && pd < 1 && downturnLgd !== null) {
     const w = (1 - Math.exp(-50 * pd)) / (1 - Math.exp(-50));
     correlation = 0.12 * w + 0.24 * (1 - w);
     maturityAdjustment = Math.pow(0.11852 - 0.05478 * Math.log(pd), 2);

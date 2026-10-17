@@ -78,3 +78,26 @@ describe('LGD Scorecard page', () => {
     expect(screen.getByTestId('lgd-country-factor')).toHaveTextContent('1.0921');
   });
 });
+
+describe('PD Scorecard off-take inputs (review fix)', () => {
+  it('shows the captured percentage exactly and keeps it unchanged on blur', async () => {
+    window.location.hash = '#/pd-scorecard';
+    const deal = solarCapitalDealFactory();
+    deal.pdScorecard.offtakePct.post = 0.125;
+    render(<App initialDeal={deal} />);
+    const input = screen.getByLabelText(/E2\.1 post-completion percentage/i);
+    expect(input).toHaveValue('12.50');
+    fireEvent.focus(input);
+    fireEvent.blur(input);
+    await new Promise((r) => setTimeout(r, 400));
+    expect(JSON.parse(window.localStorage.getItem(STORAGE_KEY)!).pdScorecard.offtakePct.post).toBe(0.125);
+  });
+
+  it('refreshes the off-take inputs when another deal is loaded', () => {
+    window.location.hash = '#/pd-scorecard';
+    render(<App initialDeal={emptyDeal()} />);
+    expect(screen.getByLabelText(/E2\.1 post-completion percentage/i)).toHaveValue('');
+    fireEvent.click(screen.getByRole('button', { name: /load example/i }));
+    expect(screen.getByLabelText(/E2\.1 post-completion percentage/i)).toHaveValue('100.00');
+  });
+});

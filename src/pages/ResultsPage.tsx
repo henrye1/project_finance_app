@@ -81,7 +81,7 @@ export function ResultsPage() {
             <dd>{fmtPct(pd.sovereign.pd, 4)}</dd>
           </dl>
           <div className="table-wrap">
-            <table className="data-table compact">
+            <table className="data-table compact wrap">
               <caption>Section ratings</caption>
               <thead>
                 <tr>

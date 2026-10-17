@@ -75,6 +75,10 @@ export function computeAll(deal: Deal): Computed {
     warnings.push('Project Information: construction end date is before the project start date');
   if (pi.constructionEndDate && pi.projectEndDate && pi.projectEndDate < pi.constructionEndDate)
     warnings.push('Project Information: project end date is before the construction end date');
+  const ratingInLife =
+    pi.ratingDate !== null && pi.projectStartDate !== null && pi.projectEndDate !== null && pi.ratingDate >= pi.projectStartDate && pi.ratingDate <= pi.projectEndDate;
+  if (pi.ratingDate && pi.projectStartDate && pi.projectEndDate && !ratingInLife)
+    warnings.push('Project Information: the rating date must fall between the project start and end dates');
 
   const constructionCosts = toDated(cd.constructionCosts);
   const cfads = toDated(cd.cfads);
@@ -115,12 +119,18 @@ export function computeAll(deal: Deal): Computed {
       pdPost: null,
     });
     warnings.push(...valuation.warnings);
+    const gridDates = new Set(valuation.periods.map((p) => p.date));
+    const offGridCfads = cfads.filter((c) => !gridDates.has(c.date)).length;
+    if (offGridCfads > 0) warnings.push(`Cashflow Details: ${offGridCfads} cash flow amount(s) are dated off the valuation grid and are ignored (not on the valuation grid)`);
+    const lastConstruction = valuation.periods.filter((p) => p.constructionCost !== null).map((p) => p.date).pop();
+    const lateCosts = constructionCosts.filter((c) => lastConstruction !== undefined && c.date > lastConstruction).length;
+    if (lateCosts > 0) warnings.push(`Cashflow Details: ${lateCosts} construction cost amount(s) are dated after construction end and are ignored`);
     valuationAnalysis = computeValuationAnalysis(valuation.periods, startYear!, endYear!);
-    if (pi.ratingDate) {
+    if (pi.ratingDate && ratingInLife) {
       const row = valuationAnalysis.find((r) => r.year === yearOf(pi.ratingDate!));
       if (row) dscr = row.averageDscr;
-      else warnings.push('Project Valuation: the rating date falls outside the project life, so no DSCR is available');
     }
+    if (pi.ratingDate && !ratingInLife) warnings.push('Project Valuation: the rating date falls outside the project life, so no DSCR is available');
   } else {
     warnings.push('Project Valuation: cannot run until Project Information dates, valuation parameters and the discount rate are captured');
   }
@@ -187,8 +197,13 @@ export function computeAll(deal: Deal): Computed {
     lgdYear,
     recoveryRate: lgdScorecard.recoveryRate,
   });
+  if (lgdYear && results.lgdTable[0].lifetime === null)
+    warnings.push('Results: no Senior Secured lifetime LGD in the rating year (no Senior Secured loan with exposure), so the capital calculation is withheld');
 
   // Step status
+  const unique = Array.from(new Set(warnings));
+  warnings.length = 0;
+  warnings.push(...unique);
   const piFilled = [pi.dealName !== '', ...Object.values(piRequired).map((v) => v !== null)];
   const cdFilled = [constructionCosts.length > 0, cfads.length > 0, cd.discountRatePerPeriod !== null];
   const loanFilled = loans.some(

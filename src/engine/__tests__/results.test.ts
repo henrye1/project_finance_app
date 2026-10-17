@@ -55,10 +55,12 @@ describe('computeResults (Results sheet)', () => {
     expect(computeResults({ ratingDate: '2017-12-31', projectEndDate: '2020-06-30', finalPd: 0.01, lgdYear, recoveryRate: 0.5 }).capital.remainingMaturity).toBeCloseTo(2.5, 10);
   });
 
-  it('applies the 1% LGD floor when the lifetime LGD is missing', () => {
+  it('returns null capital figures when there is no Senior Secured lifetime LGD', () => {
     const r2 = computeResults({ ratingDate: '2017-12-31', projectEndDate: '2036-06-30', finalPd: 0.01, lgdYear: undefined, recoveryRate: null });
     expect(r2.lgdTable[0]).toEqual({ seniority: 'Senior Secured', twelveMonth: null, lifetime: null });
-    expect(r2.capital.downturnLgd).toBeCloseTo(0.92 * 0.01 + 0.08, 12);
+    expect(r2.capital.downturnLgd).toBeNull();
+    expect(r2.capital.k).toBeNull();
+    expect(r2.capital.remainingMaturity).toBe(5);
   });
 
   it('returns null capital numbers without a PD', () => {
@@ -99,5 +101,36 @@ describe('computeAll', () => {
     d.projectInformation.dealName = 'X';
     const c = computeAll(d);
     expect(c.stepStatus.projectInformation).toBe('partial');
+  });
+});
+
+describe('computeAll (review fixes)', () => {
+  it('warns and withholds capital when the only loan is not Senior Secured', () => {
+    const d = structuredClone(solarCapitalDeal);
+    d.loans[0].seniority = 'Senior Unsecured';
+    const c = computeAll(d);
+    expect(c.results.capital.k).toBeNull();
+    expect(c.warnings.some((w) => /Senior Secured/.test(w))).toBe(true);
+    expect(c.stepStatus.results).not.toBe('complete');
+  });
+
+  it('does not repeat the same warning twice', () => {
+    const c = computeAll(emptyDeal());
+    expect(new Set(c.warnings).size).toBe(c.warnings.length);
+  });
+
+  it('warns when the rating date is outside the project life', () => {
+    const d = structuredClone(solarCapitalDeal);
+    d.projectInformation.ratingDate = '2012-06-30';
+    const c = computeAll(d);
+    expect(c.warnings.some((w) => /rating date/i.test(w))).toBe(true);
+    expect(c.dscr).toBeNull();
+  });
+
+  it('warns when captured cash flows fall off the valuation grid', () => {
+    const d = structuredClone(solarCapitalDeal);
+    d.cashflowDetails.cfads['2016-03-15'] = 5;
+    const c = computeAll(d);
+    expect(c.warnings.some((w) => /not on the valuation grid/i.test(w))).toBe(true);
   });
 });

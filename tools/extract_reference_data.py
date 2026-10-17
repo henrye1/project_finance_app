@@ -162,11 +162,24 @@ def extract_sovereigns(cells) -> list[dict]:
     return out
 
 
+def _flush_group(glossary: dict[str, str], group: list) -> None:
+    titles = [g for g in group if g[3]]
+    if not titles:
+        return
+    title_row = titles[-1]
+    title_idx = group.index(title_row)
+    desc = " ".join(g[2] for g in group[title_idx + 1 :])
+    if desc:
+        glossary[title_row[2]] = desc
+        if title_row[1] is not None:
+            glossary[normalise_id(title_row[1])] = desc
+
+
 def extract_glossary(cells) -> dict[str, str]:
     """Terms of Use: groups of rows ending with a 'Back' link; the last row carrying an id is the title."""
     glossary: dict[str, str] = {}
     max_row = max(r for r, _ in cells)
-    group: list[tuple[int, object, str]] = []
+    group: list[tuple[int, object, str, bool]] = []
     for row in range(1, max_row + 1):
         b = get(cells, "B", row)
         c = get(cells, "C", row)
@@ -175,16 +188,14 @@ def extract_glossary(cells) -> dict[str, str]:
             if b is not None:
                 group = []  # sheet-level heading
             continue
-        group.append((row, b, collapse_ws(c)))
+        text = collapse_ws(c)
+        is_title = b is not None or (len(text) < 120 and not re.match(r"^(This|These|Here|The |In the case|If )", text))
+        if is_title and group and group[-1][3] is False:
+            _flush_group(glossary, group)
+            group = []
+        group.append((row, b, text, is_title))
         if d == "Back":
-            with_id = [g for g in group if g[1] is not None]
-            title_idx = group.index(with_id[-1]) if with_id else 0
-            title_row = group[title_idx]
-            desc = " ".join(g[2] for g in group[title_idx + 1 :])
-            if desc:
-                glossary[collapse_ws(title_row[2])] = desc
-                if title_row[1] is not None:
-                    glossary[normalise_id(title_row[1])] = desc
+            _flush_group(glossary, group)
             group = []
     return glossary
 

@@ -37,7 +37,10 @@ export function FundingDetailsPage() {
     { key: 'amount', label: amountLabel, kind: 'amount', get: (r) => r.amount, set: (r, v) => ({ ...r, amount: (v as number | null) ?? 0 }) },
   ];
   const setDated = (key: 'disbursements' | 'variableCapital', i: number, row: DatedAmount) =>
-    update({ [key]: loan[key].map((r, k) => (k === i ? { date: row.date, amount: row.amount } : r)) } as Partial<LoanInput>);
+    setDeal((d) => ({
+      ...d,
+      loans: d.loans.map((l, li) => (li === index ? { ...l, [key]: l[key].map((r, k) => (k === i ? { date: row.date, amount: row.amount } : r)) } : l)),
+    }));
   const addDated = (key: 'disbursements' | 'variableCapital') => {
     const last = loan[key][loan[key].length - 1];
     const date = last?.date ?? loan.firstPaymentDate ?? deal.projectInformation.projectStartDate ?? new Date().toISOString().slice(0, 10);
@@ -60,7 +63,7 @@ export function FundingDetailsPage() {
   return (
     <article className="page">
       <h1>Funding Details</h1>
-      <p className="lede">Step 3 of 7. {glossary['FUNDING DETAILS:'] ?? 'This section captures the funding details of the transaction: interest rates, dates, repayment structure and drawdowns.'} Up to five loans; the most senior ranks first.</p>
+      <p className="lede">Step 3 of 7. This section captures the funding details of the transaction: interest rates, start and end dates, repayment structure and drawdowns. Up to five loans; the most senior ranks first.</p>
 
       <div className="tabs" role="tablist" aria-label="Loans">
         {deal.loans.map((l, i) => (
