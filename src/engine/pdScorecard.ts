@@ -198,7 +198,7 @@ export function computePdScorecard(i: PdScorecardInput): PdScorecardResult {
     };
   });
 
-  const sumOrNull = (vals: (number | null)[]) => (vals.some((v) => v === null) ? null : vals.reduce((s, v) => s + (v as number), 0));
+  const sumOrNull = (vals: (number | null)[]) => (vals.some((v) => v === null) ? null : vals.reduce<number>((acc, v) => acc + (v ?? 0), 0));
   const totalPre = sumOrNull(sections.map((s) => s.weightedPre));
   const totalPost = sumOrNull(sections.map((s) => s.weightedPost));
   const pdPre = totalPre === null ? null : pdFromScore(totalPre);
