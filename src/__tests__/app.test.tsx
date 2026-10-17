@@ -12,7 +12,8 @@ describe('App shell', () => {
     render(<App />);
     const nav = screen.getByRole('navigation', { name: /steps/i });
     const items = within(nav).getAllByRole('link').map((a) => a.textContent?.replace(/\s+/g, ' ').trim());
-    expect(items.slice(0, 7)).toEqual([
+    expect(items[0]).toBe('Instructions');
+    expect(items.slice(1, 8)).toEqual([
       '1 Project Information',
       '2 Cashflow Details',
       '3 Funding Details',
