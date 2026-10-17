@@ -117,11 +117,13 @@ export function Field(props: FieldProps) {
   }
   return (
     <div className="field">
-      <label htmlFor={id} className="field-label">
-        {props.code && <span className="field-code">{props.code}</span>}
-        <span>{props.label}</span>
+      <div className="field-label">
+        <label htmlFor={id}>
+          {props.code && <span className="field-code">{props.code} </span>}
+          {props.label}
+        </label>
         {props.help && <HelpNote text={props.help} />}
-      </label>
+      </div>
       <div className="field-control">
         {control}
         {props.suffix && <span className="field-suffix">{props.suffix}</span>}
