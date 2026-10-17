@@ -170,4 +170,4 @@ export const pdAnswers: Record<string, { pre: string | null; post: string | null
 };
 
 /** External template PD path used by the workbook's Project LGD New sheet (col AE). */
-export const externalPdByYear = (year: number): number => (year <= 2021 ? 0.029353106208183811 : 0.0079850580192199587);
+export const externalPdByYear = (year: number): number => (year <= 2013 ? 0.029353106208183811 : 0.0079850580192199587);

@@ -188,7 +188,7 @@ export function computeValuation(v: ValuationInput): ValuationResult {
     const totalRepayments = repayments.reduce((s, x) => s + x, 0);
     const pvPrev = prevDate ? (pvByDate.get(prevDate) ?? 0) : 0;
     const companyAssetValue = Math.max(accForRow !== null ? accForRow + (clearance ?? 0) : 0, pvPrev);
-    const pd = compareIso(date, v.constructionEndDate) <= 0 ? v.pdPre : v.pdPost;
+    const pd = compareIso(date, v.constructionEndDate) < 0 ? v.pdPre : v.pdPost;
 
     periods.push({
       date,
