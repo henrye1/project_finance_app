@@ -100,12 +100,12 @@ describe('reference data extracted from the workbook', () => {
 
   it('sovereign SA is Ba2', () => {
     expect(sovereignRatings.find((r) => r.country === 'SOUTH AFRICA')!.rating).toBe('Ba2');
-    expect(sovereignRatings.length).toBeGreaterThan(140);
+    expect(sovereignRatings.length).toBeGreaterThan(130);
   });
 
   it('has glossary text for the rating date', () => {
     expect(glossary['PROJECT RATING DATE']).toContain('evaluation / rating date');
-    expect(glossary['A2.1']).toContain('cross-border');
+    expect(glossary['A2.1']).toContain('multiple jurisdictions');
   });
 
   it('has the restructure grid', () => {

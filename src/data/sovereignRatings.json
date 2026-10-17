@@ -1,0 +1,542 @@
+[
+ {
+  "country": "ALBANIA",
+  "rating": "Ba3"
+ },
+ {
+  "country": "ANDORRA",
+  "rating": "Baa1"
+ },
+ {
+  "country": "ANGOLA",
+  "rating": "B3"
+ },
+ {
+  "country": "ARGENTINA",
+  "rating": "Ca"
+ },
+ {
+  "country": "ARMENIA",
+  "rating": "Ba3"
+ },
+ {
+  "country": "ARUBA",
+  "rating": "Baa3"
+ },
+ {
+  "country": "AUSTRALIA",
+  "rating": "Aaa"
+ },
+ {
+  "country": "AUSTRIA",
+  "rating": "Aa1"
+ },
+ {
+  "country": "AZERBAIJAN",
+  "rating": "Ba1"
+ },
+ {
+  "country": "BAHAMAS",
+  "rating": "B1"
+ },
+ {
+  "country": "BAHRAIN",
+  "rating": "B2"
+ },
+ {
+  "country": "BANGLADESH",
+  "rating": "B1"
+ },
+ {
+  "country": "BARBADOS",
+  "rating": "B3"
+ },
+ {
+  "country": "BELARUS",
+  "rating": "C"
+ },
+ {
+  "country": "BELGIUM",
+  "rating": "Aa3"
+ },
+ {
+  "country": "BELIZE",
+  "rating": "Caa1"
+ },
+ {
+  "country": "BENIN",
+  "rating": "B1"
+ },
+ {
+  "country": "BERMUDA",
+  "rating": "A2"
+ },
+ {
+  "country": "BOLIVIA",
+  "rating": "Caa3"
+ },
+ {
+  "country": "BOSNIA AND HERZEGOVINA",
+  "rating": "B3"
+ },
+ {
+  "country": "BOTSWANA",
+  "rating": "A3"
+ },
+ {
+  "country": "BRAZIL",
+  "rating": "Ba1"
+ },
+ {
+  "country": "BULGARIA",
+  "rating": "Baa1"
+ },
+ {
+  "country": "CAMBODIA",
+  "rating": "B2"
+ },
+ {
+  "country": "CAMEROON",
+  "rating": "Caa1"
+ },
+ {
+  "country": "CANADA",
+  "rating": "Aaa"
+ },
+ {
+  "country": "CAYMAN ISLANDS",
+  "rating": "Aa3"
+ },
+ {
+  "country": "CHILE",
+  "rating": "A2"
+ },
+ {
+  "country": "CHINA",
+  "rating": "A1"
+ },
+ {
+  "country": "COLOMBIA",
+  "rating": "Baa2"
+ },
+ {
+  "country": "CONGO",
+  "rating": "Caa2"
+ },
+ {
+  "country": "COSTA RICA",
+  "rating": "Ba3"
+ },
+ {
+  "country": "CROATIA",
+  "rating": "Baa2"
+ },
+ {
+  "country": "CUBA",
+  "rating": "WR"
+ },
+ {
+  "country": "CYPRUS",
+  "rating": "Baa2"
+ },
+ {
+  "country": "CZECH REPUBLIC",
+  "rating": "Aa3"
+ },
+ {
+  "country": "DEMOCRATIC REPUBLIC OF THE CONGO",
+  "rating": "B3"
+ },
+ {
+  "country": "DENMARK",
+  "rating": "Aaa"
+ },
+ {
+  "country": "DOMINICAN REPUBLIC",
+  "rating": "Ba3"
+ },
+ {
+  "country": "ECUADOR",
+  "rating": "Caa3"
+ },
+ {
+  "country": "EGYPT",
+  "rating": "Caa1"
+ },
+ {
+  "country": "EL SALVADOR",
+  "rating": "Caa1"
+ },
+ {
+  "country": "ESTONIA",
+  "rating": "A1"
+ },
+ {
+  "country": "ESWATINI",
+  "rating": "B3"
+ },
+ {
+  "country": "ETHIOPIA",
+  "rating": "Caa3"
+ },
+ {
+  "country": "FIJI",
+  "rating": "B1"
+ },
+ {
+  "country": "FINLAND",
+  "rating": "Aa1"
+ },
+ {
+  "country": "FRANCE",
+  "rating": "Aa2"
+ },
+ {
+  "country": "GABON",
+  "rating": "Caa2"
+ },
+ {
+  "country": "GEORGIA",
+  "rating": "Ba2"
+ },
+ {
+  "country": "GERMANY",
+  "rating": "Aaa"
+ },
+ {
+  "country": "GHANA",
+  "rating": "Caa2"
+ },
+ {
+  "country": "GREECE",
+  "rating": "Ba1"
+ },
+ {
+  "country": "GUATEMALA",
+  "rating": "Ba1"
+ },
+ {
+  "country": "HONDURAS",
+  "rating": "B1"
+ },
+ {
+  "country": "HUNGARY",
+  "rating": "Baa2"
+ },
+ {
+  "country": "ICELAND",
+  "rating": "A1"
+ },
+ {
+  "country": "INDIA",
+  "rating": "Baa3"
+ },
+ {
+  "country": "INDONESIA",
+  "rating": "Baa2"
+ },
+ {
+  "country": "IRAQ",
+  "rating": "Caa1"
+ },
+ {
+  "country": "IRELAND",
+  "rating": "Aa3"
+ },
+ {
+  "country": "ISLE OF MAN",
+  "rating": "Aa3"
+ },
+ {
+  "country": "ISRAEL",
+  "rating": "Baa1"
+ },
+ {
+  "country": "ITALY",
+  "rating": "Baa3"
+ },
+ {
+  "country": "IVORY COAST",
+  "rating": "Ba2"
+ },
+ {
+  "country": "JAMAICA",
+  "rating": "B1"
+ },
+ {
+  "country": "JAPAN",
+  "rating": "A1"
+ },
+ {
+  "country": "JORDAN",
+  "rating": "Ba3"
+ },
+ {
+  "country": "KAZAKHSTAN",
+  "rating": "Baa1"
+ },
+ {
+  "country": "KENYA",
+  "rating": "Caa1"
+ },
+ {
+  "country": "KOREA",
+  "rating": "Aa2"
+ },
+ {
+  "country": "KUWAIT",
+  "rating": "A1"
+ },
+ {
+  "country": "KYRGYZSTAN",
+  "rating": "B3"
+ },
+ {
+  "country": "LAOS",
+  "rating": "Caa3"
+ },
+ {
+  "country": "LEBANON",
+  "rating": "C"
+ },
+ {
+  "country": "LITHUANIA",
+  "rating": "A2"
+ },
+ {
+  "country": "LUXEMBOURG",
+  "rating": "Aaa"
+ },
+ {
+  "country": "MACAU",
+  "rating": "Aa3"
+ },
+ {
+  "country": "MALAYSIA",
+  "rating": "A3"
+ },
+ {
+  "country": "MALDIVES",
+  "rating": "Caa2"
+ },
+ {
+  "country": "MALI",
+  "rating": "Caa2"
+ },
+ {
+  "country": "MALTA",
+  "rating": "A2"
+ },
+ {
+  "country": "MAURITIUS",
+  "rating": "Baa3"
+ },
+ {
+  "country": "MEXICO",
+  "rating": "Baa2"
+ },
+ {
+  "country": "MOLDOVA",
+  "rating": "B3"
+ },
+ {
+  "country": "MONGOLIA",
+  "rating": "B3"
+ },
+ {
+  "country": "MONTENEGRO",
+  "rating": "Ba3"
+ },
+ {
+  "country": "MOROCCO",
+  "rating": "Ba1"
+ },
+ {
+  "country": "MOZAMBIQUE",
+  "rating": "Caa2"
+ },
+ {
+  "country": "NETHERLANDS",
+  "rating": "Aaa"
+ },
+ {
+  "country": "NEW ZEALAND",
+  "rating": "Aaa"
+ },
+ {
+  "country": "NICARAGUA",
+  "rating": "B2"
+ },
+ {
+  "country": "NIGER",
+  "rating": "Caa3"
+ },
+ {
+  "country": "NIGERIA",
+  "rating": "Caa1"
+ },
+ {
+  "country": "NORWAY",
+  "rating": "Aaa"
+ },
+ {
+  "country": "OMAN",
+  "rating": "Ba1"
+ },
+ {
+  "country": "PAKISTAN",
+  "rating": "Caa2"
+ },
+ {
+  "country": "PANAMA",
+  "rating": "Baa3"
+ },
+ {
+  "country": "PAPUA NEW GUINEA",
+  "rating": "B2"
+ },
+ {
+  "country": "PARAGUAY",
+  "rating": "Baa3"
+ },
+ {
+  "country": "PHILIPPINES",
+  "rating": "Baa2"
+ },
+ {
+  "country": "POLAND",
+  "rating": "A2"
+ },
+ {
+  "country": "QATAR",
+  "rating": "Aa2"
+ },
+ {
+  "country": "ROMANIA",
+  "rating": "Baa3"
+ },
+ {
+  "country": "RWANDA",
+  "rating": "B2"
+ },
+ {
+  "country": "SAUDI ARABIA",
+  "rating": "A1"
+ },
+ {
+  "country": "SENEGAL",
+  "rating": "B1"
+ },
+ {
+  "country": "SERBIA",
+  "rating": "Ba2"
+ },
+ {
+  "country": "SINGAPORE",
+  "rating": "Aaa"
+ },
+ {
+  "country": "SLOVAK REPUBLIC",
+  "rating": "A2"
+ },
+ {
+  "country": "SLOVENIA",
+  "rating": "A3"
+ },
+ {
+  "country": "SOLOMON ISLANDS",
+  "rating": "Caa1"
+ },
+ {
+  "country": "SOUTH AFRICA",
+  "rating": "Ba2"
+ },
+ {
+  "country": "SPAIN",
+  "rating": "Baa1"
+ },
+ {
+  "country": "SRI LANKA",
+  "rating": "Ca"
+ },
+ {
+  "country": "ST. VINCENT AND THE GRENADINES",
+  "rating": "B3"
+ },
+ {
+  "country": "SURINAME",
+  "rating": "Caa1"
+ },
+ {
+  "country": "SWEDEN",
+  "rating": "Aaa"
+ },
+ {
+  "country": "SWITZERLAND",
+  "rating": "Aaa"
+ },
+ {
+  "country": "TAIWAN",
+  "rating": "Aa3"
+ },
+ {
+  "country": "TAJIKISTAN",
+  "rating": "B3"
+ },
+ {
+  "country": "TANZANIA",
+  "rating": "B1"
+ },
+ {
+  "country": "THAILAND",
+  "rating": "Baa1"
+ },
+ {
+  "country": "TOGO",
+  "rating": "B3"
+ },
+ {
+  "country": "TRINIDAD & TOBAGO",
+  "rating": "Ba2"
+ },
+ {
+  "country": "TUNISIA",
+  "rating": "Caa2"
+ },
+ {
+  "country": "TURKIYE",
+  "rating": "B1"
+ },
+ {
+  "country": "UGANDA",
+  "rating": "B3"
+ },
+ {
+  "country": "UKRAINE",
+  "rating": "Ca"
+ },
+ {
+  "country": "UNITED ARAB EMIRATES",
+  "rating": "Aa2"
+ },
+ {
+  "country": "UNITED KINGDOM",
+  "rating": "Aa3"
+ },
+ {
+  "country": "UNITED STATES",
+  "rating": "Aaa"
+ },
+ {
+  "country": "URUGUAY",
+  "rating": "Baa1"
+ },
+ {
+  "country": "VIETNAM",
+  "rating": "Ba2"
+ },
+ {
+  "country": "ZAMBIA",
+  "rating": "Caa2"
+ }
+]

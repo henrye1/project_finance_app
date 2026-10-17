@@ -1,0 +1,63 @@
+{
+ "categories": [
+  {
+   "name": "Information Quality",
+   "weight": 0.15,
+   "options": {
+    "a)": "• Solar and Wind resources assessment applies most rigorous methods and measurement tools commensurate with project technology including at least one year on site data (at least 2/3 mast level for Wind) correlated to longer industry data set.\n• Energy production under P50, 1 year P90, and 1-year P99 scenarios are developed.\n• Third party reports thoroughly address the budget, technology, manufacturer, completion and Operational risks",
+    "b)": "• Solar assessment is based upon ground based data located close to the site and correlated to longer satellite data set for Solar and less than 2/3 mast height for Wind.\n\nThird party reports adequately address:\n• Energy production under P50 and P1 year P90 scenarios.\n• Technology risk.\n• Manufacturer risk\n• Completion and operational risk\n• Adequacy of sponsor’s budget",
+    "c)": "• No independent electric output estimate or only P50 is provided.\n• Wind/Solar assessment is based solely on nearby wind measurement sites (airports) and technology or satellite data without appropriate adjustments for data quality and technology for Solar; subject to material caveats; limited scope.\n• Inadequate"
+   }
+  },
+  {
+   "name": "Completion Risk",
+   "weight": 0.1,
+   "options": {
+    "a)": "Contractors\n• Investment-grade EPC or owner/constructor.\n• LTA closely involved during construction and will most likely be aware of any potential issues with the equipment before testing date occurs. \nContract Terms\n• EPC fixed price, date certain, turnkey.\n• Completion guarantee from credit worthy party.\n• Liquidity covers liquidated damages debt free services\n• Schedule is adequate to complete project and avoid PPA termination\nTechnology risk\n• Proven technology; low construction risk",
+    "b)": "Contractors\n• Experienced with at least three years track record with renewable energy projects and within 2 notches of investment grade.\n• LTA will be involved during construction and will most likely be aware of any potential issues with the equipment before testing date occurs.\n\nContract terms\n• Owner/contractor with strong budget contingencies and credit worthy parent guarantees.\n• Liquidity covers liquidated damages and debt service.\n• Schedule is adequate to complete project and avoid PPA termination.\n\nTechnology risk \n• Proven technology; more complex",
+    "c)": "Contractors\n• Multiply and/or weak contractors.\n• No LTA monitoring.\n\nContract terms\n• Inadequate budget contingencies, weak parent guarantees.\n• Delays easily lead to PPA termination or optimistic completion schedule.\n\nTechnology\n• Unproven or demonstration-phase technology pose greater scale up and completion risks"
+   }
+  },
+  {
+   "name": "Completion Risk Warranties",
+   "weight": 0.05,
+   "options": {
+    "a)": "Warranty performance\n• Warranty exceeds the industry standard and for at least 5 years on Wind and PV but 3 years for CSP\nManufacturer\n• Investment grade manufacturer.\n• Long history of stable operating and financial performance.\n• National or International market presence.\n• Conglomerate that is not dependent on nascent sectors",
+    "b)": "Warranty performance \n• Standard industry warranty coverage for serial defects and long term output. This includes five year warranty on panels/turbines and 90% of initial nominal output in first 10 years and 80% for 20 – 25 years. CPS technical warranties range 24 – 36 months.\n\nManufacturer\n• Investment grade manufacturer concentrated in the solar or Wind sector, or experienced conglomerate within two notches of investment grade with solid financial position to fulfill guarantees.",
+    "c)": "Warranty performance\n• Warranty is below the industry standard\n\nManufacturer\n• Experienced but below investment grade manufacturer or, \n• New manufacturer with little experience questionable longevity, and financial strength, non investment grade."
+   }
+  },
+  {
+   "name": "Operation Risk",
+   "weight": 0.1,
+   "options": {
+    "a)": "• Fixed price long term O&M agreement with investment grade providers or \n• Incentive based O&M agreement with investment grade provider \n• Major maintenance or O&M reserves is fully funded in advance to cover overhauls during the term of the debt \n• Technology is proven with a long operating history and less performance uncertainty. \n• Lenders Insurance Advisor involved and most comprehensive package pursued",
+    "b)": "• O&M agreement with experience provider. \n• Agreement is shorter than the term of the debt.\n• Performance incentives.\n• Agreement may have fixed or escalating management fees plus out of –pocket reimbursements.\n• Major maintenance is adequately funded on an accrual basis.\n• Technology is proven with limited commercial application and midranging performance uncertainty. \n• Lenders Insurance Advisor involved and adequate package pursued",
+    "c)": "• O&M provider with little experience with the technology.\n• Cost plus agreement lacking incentives.\n• Inadequate maintenance reserves.\n• Proprietary, new, or obsolete technology where parts are not easily replaceable or are expensive and a high level of performance uncertainty over the long term."
+   }
+  },
+  {
+   "name": "Revenue Risk",
+   "weight": 0.25,
+   "options": {
+    "a)": "• No merchant market exposure.\n• PPA maturity exceeds debt maturity by at least 3 years.\n• PPA with strong investment grade counterparty.\n• Oversized solar field/Wind farm that exceeds PPA requirements for energy delivery to mitigate risk of less than projected solar insulation / wind capacity.",
+    "b)": "• PPA matches full term of debt with investment-grade counterparty\n• Merchant exposure covers small portion of debt.",
+    "c)": "• PPA with below investment grade counterparty. \n• Weak PPA termination provisions.\n• Merchant exposure to cover significant portions of debt."
+   }
+  },
+  {
+   "name": "Debt Structure",
+   "weight": 0.35,
+   "options": {
+    "a)": "• Fully amortizing fixed rate with debt that matures prior to PPA maturity \n• Equity distribution threshold: at least 1.2xDSCR.\n• Average DSCR of at least 1.3x over the debt period under P90.\n• Debt service reserve account equal to or greater than six months of debt service.\n• Other covenants to ensure timely or early debt repayment; prevent over leveraging of assets; and provide adequate liquidity at project level.",
+    "b)": "• Fully amortizing fixed rate, no tail risk.\n• Distribution/lock-up covenant at:\n1.15x-1.19x DSCR.\nAverage DSCR of at least 1.2x over the debt period under P90.\n• Debt service reserve equal to six months debt service, funded upfront.\n• Other covenants to ensure timely debt repayment; prevent over leveraging of assets; and provide adequate liquidity at project level.",
+    "c)": "• Tail and/or refinance risk.\nDebt maybe within useful life of asset longer than industry average.\n• Distribution below 1.15x.\n• Average DSCR below 1.2x.\n• Debt service reserve less than six months or not fully funded upfront.\n• Weak provisions allow overleveraging of assets."
+   }
+  }
+ ],
+ "scores": {
+  "a)": 1.0,
+  "b)": 2.0,
+  "c)": 3.0
+ }
+}

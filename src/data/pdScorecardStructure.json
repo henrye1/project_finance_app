@@ -1,0 +1,332 @@
+[
+ {
+  "group": "A",
+  "groupTitle": "COUNTRY RISK",
+  "id": "A1",
+  "title": "Systemic country risk factors",
+  "weight": 0.16,
+  "kind": "sovereign",
+  "questions": [
+   {
+    "id": "A1.1",
+    "text": "What is the country of risk?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "A",
+  "groupTitle": "COUNTRY RISK",
+  "id": "A2",
+  "title": "Idiosyncratic country risk factors",
+  "weight": 0.1,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "A2.1",
+    "text": "Are the project's operations exposed to cross-border risk?",
+    "hasPrePost": true
+   },
+   {
+    "id": "A2.2",
+    "text": "Likelihood of government intervention / changes in government policy, civil unrest, labour and other non-systemic country risk events which will adversely affect 'project operations'?",
+    "hasPrePost": true
+   },
+   {
+    "id": "A2.3",
+    "text": "Incentive for regulators / authorities to support project operations (implicit non-financial support)?",
+    "hasPrePost": true
+   },
+   {
+    "id": "A2.4",
+    "text": "Expertise in dealing with legal environment or degree to which regulatory challenges are mitigated by influential relationships:",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "B",
+  "groupTitle": "ENVIRONMENTAL FACTORS",
+  "id": "B",
+  "title": "Environmental factors",
+  "weight": 0.039,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "B1.1",
+    "text": "Exposure of project operations and logistics to environmental conditions (e.g. climate & weather, topography, natural disasters):",
+    "hasPrePost": true
+   },
+   {
+    "id": "B1.2",
+    "text": "What is the project's Social and Environmental score based on Equator Principles Performance Assessment System (EP-PAS)?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "C",
+  "groupTitle": "CONSTRUCTION AND DEVELOPMENT RISK",
+  "id": "C",
+  "title": "Construction and development risk",
+  "weight": 0.1236,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "C1.1.1",
+    "text": "Construction delays:",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.1.2",
+    "text": "Construction cost overruns:",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.1.3",
+    "text": "Rejection criteria:",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.2",
+    "text": "Experience and reputation of construction contractor and professional team?",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.3",
+    "text": "Financial strength and credit quality of the construction contractor and professional team:",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.4",
+    "text": "Complexity and uniqueness of project construction and skills required?",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.5.1",
+    "text": "Is the construction / development still on track?",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.5.2",
+    "text": "Is the construction / development proceeding without cost overruns?",
+    "hasPrePost": true
+   },
+   {
+    "id": "C1.6",
+    "text": "Risk related to quality and timely delivery of construction inputs:",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "D",
+  "groupTitle": "MARKET SITUATION AND STRATEGIC RISK",
+  "id": "D1",
+  "title": "Competition",
+  "weight": 0.0311,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "D1.1",
+    "text": "Exposure of operating cash flows to competitive forces:",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "D",
+  "groupTitle": "MARKET SITUATION AND STRATEGIC RISK",
+  "id": "D2",
+  "title": "Demand and outlook",
+  "weight": 0.0535,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "D2.1",
+    "text": "Anticipated demand for end-product / service over financing term and the ability to react to demand changes due to external forces (e.g. economic cycles)?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "D",
+  "groupTitle": "MARKET SITUATION AND STRATEGIC RISK",
+  "id": "D3",
+  "title": "Technology risk",
+  "weight": 0.01,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "D3.1",
+    "text": "Does the rate of technological change within the industry present a risk of obsolescence to the object (e.g. equipment, specialist techniques)?",
+    "hasPrePost": true
+   },
+   {
+    "id": "D3.2",
+    "text": "Does the object rely on proven technology?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "E",
+  "groupTitle": "BUSINESS AND OPERATING RISK",
+  "id": "E1",
+  "title": "Supply of inputs into operating processes (operational phase)",
+  "weight": 0.0114,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "E1.1",
+    "text": "Where the operational processes (e.g. manufacture, refinement) rely on the input supplies procured from an external supplier, what is the level of risk of late / poor quality input supply?",
+    "hasPrePost": true
+   },
+   {
+    "id": "E1.2",
+    "text": "Where the operational processes (e.g. manufacture, refinement) rely on reserves (e.g. extraction of raw materials as in the case of mining or oil), what is the risk of poor quality input or the input not being available as and when required?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "E",
+  "groupTitle": "BUSINESS AND OPERATING RISK",
+  "id": "E2",
+  "title": "Off-takers",
+  "weight": 0.0171,
+  "kind": "offtake",
+  "questions": [
+   {
+    "id": "E2.1",
+    "text": "Portion of project output sold under off-take agreements (%):",
+    "hasPrePost": true
+   },
+   {
+    "id": "E2.2.1",
+    "text": "Diversification and quality of off-takers:",
+    "hasPrePost": true
+   },
+   {
+    "id": "E2.2.2",
+    "text": "Duration of off-take agreement relative to the tenor of funding:",
+    "hasPrePost": true
+   },
+   {
+    "id": "E2.2.3",
+    "text": "Off-take agreements subject to termination rights / risk:",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "E",
+  "groupTitle": "BUSINESS AND OPERATING RISK",
+  "id": "E3",
+  "title": "Operational risks",
+  "weight": 0.08,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "E3.1",
+    "text": "Dependency on technical expertise and support for on-going project operations?",
+    "hasPrePost": true
+   },
+   {
+    "id": "E3.2",
+    "text": "What is the level of maintenance risk underlying the project's operations?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "E",
+  "groupTitle": "BUSINESS AND OPERATING RISK",
+  "id": "E4",
+  "title": "Quality of management team",
+  "weight": 0.148,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "E4.1",
+    "text": "What is the quality of the operational management team?",
+    "hasPrePost": true
+   },
+   {
+    "id": "E4.2",
+    "text": "Is the operational management team easily replaceable?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "F",
+  "groupTitle": "SECURITY PACKAGE",
+  "id": "F1",
+  "title": "Covenants",
+  "weight": 0.0748,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "F1.1",
+    "text": "Track record of sponsor regarding compliance with contractual agreements and covenants",
+    "hasPrePost": true
+   },
+   {
+    "id": "F1.2",
+    "text": "Ability to frequently assess compliance with covenants and to effectively react to breaches",
+    "hasPrePost": true
+   },
+   {
+    "id": "F1.3",
+    "text": "To which degree is the bank able to control the distribution of surplus cash flows?",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "F",
+  "groupTitle": "SECURITY PACKAGE",
+  "id": "F2",
+  "title": "Core covenant monitoring ratios",
+  "weight": 0.034,
+  "kind": "dscr",
+  "questions": [
+   {
+    "id": "F2.1",
+    "text": "Debt service coverage ratio covenant",
+    "hasPrePost": true
+   }
+  ]
+ },
+ {
+  "group": "G",
+  "groupTitle": "FINANCIAL ANALYSIS AND CASH FLOWS",
+  "id": "G1",
+  "title": "Cash flow analysis",
+  "weight": 0.1175,
+  "kind": "standard",
+  "questions": [
+   {
+    "id": "G1.1",
+    "text": "Sponsor / project has liquidity to withstand sustained downturn in operating environment / variables",
+    "hasPrePost": true
+   },
+   {
+    "id": "G1.2",
+    "text": "Is the project adequately hedged against adverse currency and interest rate movements:",
+    "hasPrePost": true
+   },
+   {
+    "id": "G1.3",
+    "text": "Scalability and operating leverage (fixed costs to total costs) of project?",
+    "hasPrePost": true
+   },
+   {
+    "id": "G1.4",
+    "text": "Volatility of operating cash flow and key risk driver:",
+    "hasPrePost": true
+   }
+  ]
+ }
+]
